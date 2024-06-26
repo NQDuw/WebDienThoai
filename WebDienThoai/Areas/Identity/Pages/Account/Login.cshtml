@@ -1,0 +1,74 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="container">
+    <div class="row bg-danger" style="width:500px;margin-top:30px;margin-left:350px">
+        <div class="col">
+            <h2 class="text-center text-dark mt-5">TRANG ĐĂNG NHẬP</h2>
+            <div class=" mb-3 text-dark"> </div>
+            <div class="card my-5">
+
+                <form1 class="card-body cardbody-color p-lg-5 text-center text-center">
+
+                    <div class="text-center">
+                        <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                             style="width:200px;height:250px" alt="profile">
+                    </div>
+        
+                            <section>
+                                <form id="account" method="post">
+                                  
+                                    <hr />
+                                    <div class="form-group">
+                                        <label asp-for="Input.Email"></label>
+                                        <input asp-for="Input.Email" class="form-control" placeholder="Nhập Email" />
+                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Input.Password"></label>
+                                        <input asp-for="Input.Password" class="form-control"  placeholder="Nhập Mật Khẩu"/>
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label asp-for="Input.RememberMe">
+                                                <input asp-for="Input.RememberMe" />
+                                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <p >
+                                            <a id="forgot-password" asp-page="./ForgotPassword">Quên Mật Khẩu?</a>
+                                        </p>
+                                        <p>
+                                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Tạo Tài Khoản</a>
+                                        </p>
+                                        @*<p>
+                                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">tìm tài khoản qua gmail</a>
+                                        </p>*@
+                                    </div>
+                                </form>
+                            </section>
+
+                    <br />
+                </form1>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

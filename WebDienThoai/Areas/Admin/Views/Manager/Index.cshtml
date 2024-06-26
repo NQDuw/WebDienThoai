@@ -1,0 +1,78 @@
+﻿@model List<SanPham>
+<partial name="_Notification" />
+<div class="row ">
+    <div class="col-md-6">
+        <h2>DANH SÁCH SẢN PHẨM</h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Add" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill"></i> Thêm Mới
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-2">
+            <form asp-action="Index" method="post">
+                <div class="form-inline">
+                    <input name="textsearch" type="text" class="form-control" placeholder="Search">
+                    <button type="submit" class="btn btn-success">Tìm Kiếm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Tiêu Đề</th>
+            <th>Loại Sản Phẩm</th>
+            <th>Giá</th>
+            <th>Nội Dung</th>
+            <th>Hình</th>
+            <th>Action </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+        <tr>
+            <td>@x.TieuDe</td>
+
+            <td>@x.LoaiSanPham.Ten</td>
+            <td>@x.donGia</td>
+            <td>@x.NoiDung</td>
+            <td>
+                @if (x.Hinh != null)
+                {
+                    <img src="/images/manager/sanpham/@x.Hinh" style="width:100px" />
+                }
+            </td>
+
+            <td>
+                <a asp-action="Update" asp-route-id="@x.Id" class="btn btn-success">
+
+                    <i class="bi bi-pencil-square"></i> Sửa
+                </a>
+                <a asp-action="Delete" asp-route-id="@x.Id" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Xóa
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <ul class="pagination">
+        <li class="page-item" @(ViewBag.pageIndex == 1 ? "disabled" : "")>
+            <a class="page-link" asp-action="Index" asp-route-page="1">&laquo;</a>
+        </li>
+        @for (var i = 1; i <= ViewBag.pageSum; i++)
+        {
+<li class="page-item" @(ViewBag.pageIndex == i ? "active" : "")>
+    <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+</li>
+}
+        <li class="page-item" @(ViewBag.pageIndex == ViewBag.pageSum ? "disabled" : "")>
+            <a class="page-link" asp-action="Index" asp-route-page="@ViewBag.pageSum">&raquo;</a>
+        </li>
+    </ul>
+</div>

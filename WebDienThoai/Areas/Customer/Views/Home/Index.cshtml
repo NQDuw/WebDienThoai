@@ -1,0 +1,183 @@
+﻿@model List<SanPham>
+@{ ViewData["Title"] = "Home Page"; }
+
+<!-- SECTION -->
+<div class="section">
+    <!-- row -->
+    <div class="row">
+        <!-- shop -->
+        <div class="col-md-4 col-xs-6">
+            <div class="shop">
+                <div class="shop-img">
+                    <img style="height:180px" src="/images/manager/slide/banner-tgdd-800x300.jpg" alt="">
+                </div>
+                <div class="shop-body">
+                    <h3>Laptop<br>Collection</h3>
+                    <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- /shop -->
+        <!-- shop -->
+        <div class="col-md-4 col-xs-6">
+            <div class="shop">
+                <div class="shop-img">
+                    <img style="height:180px" src="/images/manager/slide/sl-iphone-14-promax.jpg" alt="">
+                </div>
+                <div class="shop-body">
+                    <h3>Accessories<br>Collection</h3>
+                    <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- /shop -->
+        <!-- shop -->
+        <div class="col-md-4 col-xs-6">
+            <div class="shop">
+                <div class="shop-img">
+                    <img style="height:180px" src="/images/manager/slide/thietkehaithanh-banner-1-1.jpg" alt="">
+                </div>
+                <div class="shop-body">
+                    <h3>Cameras<br>Collection</h3>
+                    <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- /shop -->
+    </div>
+    <!-- /row -->
+</div>
+
+<!-- /SECTION -->
+<!-- SECTION -->
+<div class="section">
+    <!-- row -->
+    <div class="row">
+        <!-- ASIDE -->
+        <div id="aside" class="col-md-3">
+            <!-- aside Widget -->
+            <div class="aside">
+                <h3 class="aside-title">Sản Phẩm Mới </h3>
+                @foreach (var p in Model)
+                {
+                    @if (p.donGia >15000000)
+                    {
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="/images/manager/sanpham/@p.Hinh" alt="">
+                            </div>
+                            <br />
+                            <div class="product-body">
+                                <p class="product-category">@p.LoaiSanPham.Ten</p>
+                                <h3 class="product-name"><a href="#">@p.TieuDe</a></h3>
+                                <h4 class="product-price">@Html.FormatValue(p.donGia, "{0:#,##0}VNĐ")</h4>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <!-- /aside Widget -->
+            <!-- aside Widget -->
+            <div class="aside">
+                <h3 class="aside-title">Sản Phẩm Nổi bật</h3>
+                @foreach (var p in Model)
+                {
+                    @if (p.NoiBat == 1)
+                    {
+                        <div class="product-widget">
+                            <div class="product-img">
+                                <img src="/images/manager/sanpham/@p.Hinh" alt="">
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">@p.LoaiSanPham.Ten</p>
+                                <h3 class="product-name"><a href="#">@p.TieuDe</a></h3>
+                                <h4 class="product-price">@Html.FormatValue(p.donGia, "{0:#,##0}VNĐ")</h4>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <!-- /aside Widget -->
+        </div>
+        <!-- /ASIDE -->
+        <!-- STORE -->
+        <div id="store" class="col-md-9">
+            <!-- store top filter -->
+            <div class="store-filter clearfix">
+                <div class="store-sort">
+                    <label>
+                        Sort By:
+                        <select class="input-select">
+                            <option value="0">Popular</option>
+                            <option value="1">Position</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Show:
+                        <select class="input-select">
+                            <option value="0">20</option>
+                            <option value="1">50</option>
+                        </select>
+                    </label>
+                </div>
+                <ul class="store-grid">
+                    <li class="active"><i class="fa fa-th"></i></li>
+                    <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+                </ul>
+            </div>
+            <!-- /store top filter -->
+            <!-- store products -->
+            <div class="row">
+                @foreach (var p in Model)
+                {
+                    <!-- product -->
+                    <div class="col-md-4 col-xs-6" style="height:450px;width:380px">
+                        <div class="product">
+                            <div class="product-img text-center">
+                                <img style="height:300px;width:200px" src="/images/manager/sanpham/@p.Hinh" alt="">
+                                <div class="product-label">
+                                    <span class="new">NEW</span>
+                                </div>
+                            </div>
+                            <div class="product-body">
+                                <p class="product-category">@p.LoaiSanPham.Ten</p>
+                                <h3 class="product-name"><a href="#">@p.TieuDe</a></h3>
+                                <h4 class="product-price">@Html.FormatValue(p.donGia, "{0:#,##0}VNĐ")</h4>
+                            </div>
+                            <div class="add-to-cart">
+                                <a class="addtocart add-to-cart-btn" data-sanPhamId="@p.Id" asp-controller="Cart" asp-action="AddToCart" asp-route-sanPhamId="@p.Id"><i class=" fa-shopping-cart"></i>Thêm Giỏ Hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /product -->
+                    <div class="clearfix visible-sm visible-xs"></div>
+                }
+
+            </div>
+            <!-- /store products -->
+            <!-- store bottom filter -->
+            <div class="store-filter clearfix">
+                <ul class="pagination">
+                    <li class="page-item" @(ViewBag.pageIndex == 1 ? "disabled" : "")>
+                        <a class="page-link" asp-action="Index" asp-route-page="1">&laquo;</a>
+                    </li>
+                    @for (var i = 1; i <= ViewBag.pageSum; i++)
+                    {
+                        <li class="page-item" @(ViewBag.pageIndex == i ? "active" : "")>
+                            <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+                        </li>
+                    }
+                    <li class="page-item" @(ViewBag.pageIndex == ViewBag.pageSum ? "disabled" : "")>
+                        <a class="page-link" asp-action="Index" asp-route-page="@ViewBag.pageSum">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /store bottom filter -->
+        </div>
+        <!-- /STORE -->
+    </div>
+    <!-- /row -->
+</div>
+<!-- /container -->
+<!-- /SECTION -->
