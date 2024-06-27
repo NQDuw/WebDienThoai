@@ -132,10 +132,10 @@
                 @foreach (var p in Model)
                 {
                     <!-- product -->
-                    <div class="col-md-4 col-xs-6" style="height:450px;width:380px">
+                    <div class="col-md-4 col-xs-6 " style="height:300px;width:280px;margin-bottom:20px;">
                         <div class="product">
                             <div class="product-img text-center">
-                                <img style="height:300px;width:200px" src="/images/manager/sanpham/@p.Hinh" alt="">
+                                <img style="height:200px;width:150px" src="/images/manager/sanpham/@p.Hinh" alt="">
                                 <div class="product-label">
                                     <span class="new">NEW</span>
                                 </div>
@@ -146,7 +146,7 @@
                                 <h4 class="product-price">@Html.FormatValue(p.donGia, "{0:#,##0}VNĐ")</h4>
                             </div>
                             <div class="add-to-cart">
-                                <a class="addtocart add-to-cart-btn" data-sanPhamId="@p.Id" asp-controller="Cart" asp-action="AddToCart" asp-route-sanPhamId="@p.Id"><i class=" fa-shopping-cart"></i>Thêm Giỏ Hàng</a>
+                                <a class="addtocart add-to-cart-btn" data-sanPhamId="@p.Id" asp-controller="Cart" asp-action="AddToCart" asp-route-sanPhamId="@p.Id">Thêm Giỏ Hàng</a>
                             </div>
                         </div>
                     </div>
